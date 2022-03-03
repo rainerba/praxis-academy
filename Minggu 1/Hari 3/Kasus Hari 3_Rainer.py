@@ -1,6 +1,7 @@
 #Kasus Hari 1 Minggu 1
 #Rainer Beth Andrew
 
+#Contoh data yang akan diurutkan:
 ex = [12,35,56,22,3,17,15,8,20,32,63,64,23,63,42,16,23,46,54,32,26]
 print("Data awal: " + str(ex))
 
@@ -41,9 +42,11 @@ class sorting:
         if len(self.data) > 1:
             mid = len(self.data) // 2
             L = self.data[:mid]
+            kiri = sorting(L)
             R = self.data[mid:]
-            sorting.merge(L)
-            sorting.merge(R)
+            kanan = sorting(R)
+            kiri.merge()
+            kanan.merge()
             i = j = k = 0
             while i < len(L) and j < len(R):
                 if L[i] < R[j]:
@@ -62,8 +65,6 @@ class sorting:
                 self.data[k] = R[j]
                 j += 1
                 k += 1
-        print('Proses:')
-        print(self.data)
 
     def quick(self):
         if len(self.data) > 1:
@@ -82,9 +83,11 @@ class sorting:
             self.data[-1] = self.data[pointer+1]
             self.data[pointer+1] = pivot
             L = self.data[:pointer+1]
+            kiri = sorting(L)
             R = self.data[pointer+1:]
-            sorting.quick(L)
-            sorting.quick(R)
+            kanan = sorting(R)
+            kiri.quick()
+            kanan.quick()
             i = j = k = 0
             while i < len(L) and j < len(R):
                 if L[i] < R[j]:
@@ -104,8 +107,7 @@ class sorting:
                 j += 1
                 k += 1
 
-#pilih algoritma self.dataing
-contoh = sorting(ex)
-contoh.selection()
+#pilih algoritma sorting dengan mengubah quick dengan function yang diinginkan
+sorting(ex).quick()
 
 print("Data Akhir:" + str(ex))
