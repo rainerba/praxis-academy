@@ -1,30 +1,15 @@
 #Program ATM Python Hari 4 Rainer
+balance = 0.0
+withdraw = 0.0
+deposit = 0.0
 
-class Balance:
-    balance = 0.0
-    def setBalance(self, b):
-        self.balance = b
-    def getBalance(self):
-        return self.balance
+p = input("Insert PIN: ")
 
-class Deposit:
-    deposit = 0.0
-    def setDeposit(self, d):
-        self.deposit = d
-    def getDeposit(self):
-        return self.deposit
-
-class Withdraw:
-    withdraw = 0.0
-    def setWithdraw(self, w):
-        self.withdraw = w
-    def getWithdraw(self):
-        return self.withdraw
-
-class ATMMachine(Balance, Deposit, Withdraw):
-    balance = Balance.getBalance()
+class ATMMachine:
+    def __init__(self, pin):
+        self.pin = pin
     def CheckBalance(self):
-        print(f"Your Current Balance: {Balance.getBalance()}")
+        print("Your Current Balance is: {}".format(Balance(p, balance).getBalance()))
     def withdraw(self):
         if(self.balance == 0):
             print("Your Current Balance is Zero")
@@ -40,32 +25,50 @@ class ATMMachine(Balance, Deposit, Withdraw):
             self.balance -= self.withdraw
             print(f"You withdraw the amount of {Withdraw.getWithdraw()} ")
     def depositMoney(self):
-        print(f"You deposited the amount of {Deposit.getDeposit}")
+        print("You deposited the amount of {}".format(x.getDeposit()))
 
-print("Select ATM Transaction")
-print("[1] Deposit")
-print("[2] Withdraw")
-print("[3] Balance Inquiry")
-print("[4] Exit")
-pilih = input()
-while pilih < 4:
-    x = pilih
-    def menu(x):
-        match x: 
-            case "1":
-                Deposit.deposit = input("Enter the amount of money to deposit: ")
-                Balance.balance += Deposit.deposit
-                ATMMachine.depositMoney()
-            case "2":
-                print("To withdraw, make sure that you have sufficient balance in your account.")
-                Withdraw.withdraw = input("Enter amount of money to withdraw: ")
-                ATMMachine.withdraw()
-            case "3":
-                ATMMachine.CheckBalance()
-            case "4":
-                print("Transaction exited.")
+class Balance(ATMMachine):
+    def __init__(self, pin, balance):
+        ATMMachine.__init__(self, pin)
+        self.balance = balance
+    def getBalance(self):
+        return self.balance
 
+class Deposit(ATMMachine):
+    def __init__(self, pin, deposit):
+        ATMMachine.__init__(self, pin)
+        self.deposit = deposit
+    def getDeposit(self):
+        return self.deposit
 
-# x = ATMMachine()
-# x.CheckBalance()
-# x.setDeposit(20000)
+class Withdraw(ATMMachine):
+    def __init__(self, pin, withdraw):
+        ATMMachine.__init__(self, pin)
+        self.withdraw = withdraw
+    def getWithdraw(self):
+        return self.withdraw
+
+pilih = 0
+while True:
+    print("Select ATM Transaction")
+    print("[1] Deposit")
+    print("[2] Withdraw")
+    print("[3] Balance Inquiry")
+    print("[4] Exit")
+    pilih = input("Select Transaction: ")
+    if(pilih == "1"):
+        x = Deposit(p, float(input("Enter the amount of money to deposit: ")))
+        Balance(p, balance).balance = Deposit(p, deposit).getDeposit()
+        ATMMachine(p).depositMoney()
+        Balance(p, balance).getBalance()
+    elif(pilih == "2"):
+        print("To withdraw, make sure that you have sufficient balance in your account.")
+        ATMMachine(p).Withdraw(p, float(input("Enter amount of money to withdraw: ")))
+        ATMMachine(p).withdraw()
+    elif(pilih == "3"):
+        ATMMachine(p).CheckBalance()
+    elif(pilih == "4"):
+        print("Transaction exited.")
+        break
+    else:
+        print("Error Input! Please enter a correct number only.")
