@@ -1,0 +1,7 @@
+Mempelajari PostgreSQL untuk database management dari https://www.postgresqltutorial.com/ 
+Youtube https://www.youtube.com/watch?v=qw--VYLpxG4&t=1058s
+Belajar dan mencoba part 1 dari PostgreSQL yaitu querying data mencakup:
+	select
+	column aliases
+	order by
+	select distinct
