@@ -1,0 +1,8 @@
+melanjutkan belajar dari postgresqltutorial.com dengan materi:
+	where
+	limit
+	fetch
+	in
+
+membantu technonatura jogja level 7 dalam membuat rangkaian, coding, dan troubleshooting
+arduino untuk membuat IoT penyiraman tanaman

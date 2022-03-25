@@ -1,0 +1,7 @@
+Lanjut mempelajari section 2 dari postgresqltutorial.com mencakup:
+	between
+	like
+	is null
+dan section 3:
+	joins (overview)
+	alias
